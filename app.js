@@ -81,6 +81,11 @@
         <span>${escapeHtml(it.title)}</span>
       </li>
     `).join('');
+    
+    // обновляем счётчик
+    const done = items.filter(it => it.done).length;
+    document.getElementById('todoCounter').textContent = 
+    `Выполнено: ${done} из ${items.length}`;
   }
 
   function escapeHtml(str) {

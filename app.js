@@ -74,6 +74,13 @@
     save(items); render();
   });
 
+  // Очистить все выполненные задачи
+  document.getElementById('clearCompleted').addEventListener('click', () => {
+    items = items.filter(it => !it.done);
+    save(items);
+    render();
+  });
+
   function render() {
     list.innerHTML = items.map(it => `
       <li data-id="${it.id}">
@@ -81,7 +88,7 @@
         <span>${escapeHtml(it.title)}</span>
       </li>
     `).join('');
-    
+
     // обновляем счётчик
     const done = items.filter(it => it.done).length;
     document.getElementById('todoCounter').textContent = 

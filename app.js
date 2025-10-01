@@ -19,7 +19,6 @@
 
   // Accent shuffle
   const shuffle = () => {
-    const rand = () => Math.floor(150 + Math.random()*105);
     const c1 = `oklch(0.75 0.16 ${Math.floor(Math.random()*360)} / 1)`;
     const c2 = `oklch(0.78 0.15 ${Math.floor(Math.random()*360)} / 1)`;
     root.style.setProperty('--accent-1', c1);
@@ -37,6 +36,7 @@
   const input = document.getElementById('todoInput');
   const list = document.getElementById('todoList');
   const KEY = 'feather.todos';
+  let currentFilter = 'all';
 
   function load() {
     try {
@@ -81,18 +81,34 @@
     render();
   });
 
+  // Фильтры
+  document.querySelectorAll('.filters button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentFilter = btn.dataset.filter;
+      document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      render();
+    });
+  });
+
   function render() {
-    list.innerHTML = items.map(it => `
+    let filtered = items;
+    if (currentFilter === 'active') {
+      filtered = items.filter(it => !it.done);
+    } else if (currentFilter === 'done') {
+      filtered = items.filter(it => it.done);
+    }
+
+    list.innerHTML = filtered.map(it => `
       <li data-id="${it.id}">
         <input type="checkbox" ${it.done ? 'checked' : ''} aria-label="Готово">
         <span>${escapeHtml(it.title)}</span>
       </li>
     `).join('');
 
-    // обновляем счётчик
     const done = items.filter(it => it.done).length;
-    document.getElementById('todoCounter').textContent = 
-    `Выполнено: ${done} из ${items.length}`;
+    document.getElementById('todoCounter').textContent =
+      `Выполнено: ${done} из ${items.length}`;
   }
 
   function escapeHtml(str) {

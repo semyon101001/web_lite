@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Feather — лёгкое красивое веб‑приложение</title>
+  <title>Feather — лёгкое красивое веб-приложение</title>
   <meta name="description" content="Минималистичное одностраничное приложение без сборки — просто откройте index.html в браузере." />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,6 +50,8 @@
         <li>тёмная тема</li>
       </ul>
     </div>
+
+    <!-- todo карточка -->
     <div class="hero-card" role="img" aria-label="Демонстрационная карточка приложения">
       <div class="card-header">
         <span class="dot"></span><span class="dot"></span><span class="dot"></span>
@@ -62,12 +64,21 @@
             <input id="todoInput" type="text" placeholder="Новая задача…" aria-label="Новая задача">
             <button class="button small" type="submit">Добавить</button>
           </form>
+
           <button class="ghost small" id="clearCompleted" type="button">Удалить выполненные</button>
+
+          <div class="filters">
+            <button class="ghost small active" data-filter="all">Все</button>
+            <button class="ghost small" data-filter="active">Активные</button>
+            <button class="ghost small" data-filter="done">Выполненные</button>
+          </div>
+
           <ul id="todoList" class="list"></ul>
           <p id="todoCounter" class="muted"></p>
         </div>
       </div>
     </div>
+
     <div class="blur-1"></div>
     <div class="blur-2"></div>
   </section>
@@ -81,7 +92,7 @@
       </article>
       <article class="feature">
         <h3>Эстетика по умолчанию</h3>
-        <p>Система дизайн‑токенов на CSS‑переменных, плавные анимации, сетка.</p>
+        <p>Система дизайн-токенов на CSS-переменных, плавные анимации, сетка.</p>
       </article>
       <article class="feature">
         <h3>Тёмная/светлая тема</h3>
@@ -89,7 +100,7 @@
       </article>
       <article class="feature">
         <h3>Мелкий интерактив</h3>
-        <p>Демо‑список задач хранится в <code>localStorage</code>. Легко заменить на свои данные.</p>
+        <p>Демо-список задач хранится в <code>localStorage</code>. Легко заменить на свои данные.</p>
       </article>
     </div>
   </section>

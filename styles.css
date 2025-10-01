@@ -128,3 +128,19 @@ body {
 
 /* Focus styles */
 :focus-visible { outline: 2px solid color-mix(in oklab, var(--accent-2) 80%, white); outline-offset: 2px; }
+/* Анимация появления и удаления задач */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeOut {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-10px); }
+}
+
+.list li {
+  animation: fadeIn 0.3s ease forwards;
+}
+.list li.removed {
+  animation: fadeOut 0.3s ease forwards;
+}

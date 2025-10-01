@@ -68,10 +68,13 @@
   });
 
   list.addEventListener('dblclick', (e) => {
-    const li = e.target.closest('li'); if (!li) return;
+  const li = e.target.closest('li'); if (!li) return;
+  li.classList.add('removed');
+  setTimeout(() => {
     const id = li.dataset.id;
     items = items.filter(it => it.id !== id);
     save(items); render();
+    }, 300); // ждать анимацию
   });
 
   // Очистить все выполненные задачи
